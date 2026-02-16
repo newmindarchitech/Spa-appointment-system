@@ -13,6 +13,7 @@
 # testing
 /coverage
 index.http
+/public/images/
 # next.js
 /.next/
 /out/

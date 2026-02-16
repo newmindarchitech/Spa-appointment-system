@@ -14,7 +14,7 @@ const UserCheck=hc<UserProtection>('http://localhost:2000')
 
 const AppointmentCheck=hc<AppointmentChec>('http://localhost:2000')
 
-export const userRoutes=user.api
+export const AuthRoutes=user.api
 
 export const appointmentRoutes=appointment.api
 
