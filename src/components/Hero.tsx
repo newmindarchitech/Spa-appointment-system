@@ -1,60 +1,32 @@
-'use client';
-import React, { useEffect, useState } from "react";
-import { slides } from "../../constants/navbarindex";
-import "./carousel_styles/carousel.css"
-const Hero = () => {
-  const [current, setCurrent] = useState(0);
+import Image from "next/image"
+import { banners } from "../../constants/navbarindex"
+import { text } from "stream/consumers";
+import Banner from "./Banner";
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrent(prev => (prev + 1) % slides.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
 
-  const slideRight = () => {
-    setCurrent(current === slides.length - 1 ? 0 : current + 1);
-  };
-
-  const slideLeft = () => {
-    setCurrent(current === 0 ? slides.length - 1 : current - 1);
-  };
-
-  return (
-    <div className="hero bg-base-200 min-h-screen relative ">
-      <div className=" carousel relative w-full h-full">
-        {slides.map((image, index) => (
-          <div
-            key={image.id}
-            id={image.id}
-            //className="absolute inset-0 transition-opacity duration-500"
-             className={` w-full  ${index === current ? " carousel-item relative w-full carousel_card_transition carousel_card_active" : "carousel_card_transition"}`}
-          >
-            <img
-              src={image.imgSrc}
-              alt="carousel"
-              className="w-full h-full"
-            />
-            <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 justify-between">
-              <button className="btn btn-circle" onClick={slideLeft}>❮</button>
-              <button className="btn btn-circle" onClick={slideRight}>❯</button>
+const Hero=()=>{
+    const firstBanner = banners.slice(0,2); // First banner(s)
+  const remainingBanners = banners.slice(2,4);
+    return(
+            <div className="text-center my-8">
+                <h2 className="text-2xl font-bold">Promotions of the Week</h2>
+                    <p className="mt-2 text-gray-600">Some descriptive text or call to action.</p>
+                <div className="banner_spin">
+                <section className=" my-16">
+                    <div className="flex flex-col lg:flex-row gap-4 w-full h-full  mx-auto px-6">
+                        <Banner image={firstBanner[0].imgSrc} content={'SPA & BEAUTY TREATMENT'} percent_drop={20}/>
+                        <Banner image={firstBanner[1].imgSrc} content={'THAI MASSAGE CREAMS'} percent_drop={40}/>
+                    </div>
+                    <section className="my-4">
+                        <div className="flex flex-col lg:flex-row gap-4 max-w-400 mx-auto px-6">
+                            <Banner image={remainingBanners[0].imgSrc} content={'SPA & BEAUTY TREATMENT'} percent_drop={20}/>
+                            <Banner image={remainingBanners[1].imgSrc} content={'THAI MASSAGE CREAMS'} percent_drop={40}/>
+                        </div>
+                    </section>
+                </section>
             </div>
-          </div>
-        ))}
-      </div>
-      <div className="hero-content text-center flex-col lg:flex-row">
-        <div className="max-w-md">
-          <h1 className="text-5xl font-bold">Hello There</h1>
-          <p className="py-6 mb-5 text-amber-50">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut
-            assumenda excepturi exercitationem quasi. In deleniti eaque aut
-            repudiandae et a id nisi.
-          </p>
-          <button className="btn btn-soft btn-primary">Get Started</button>
         </div>
-      </div>
-    </div>
-  );
-};
-
-export default Hero;
+    )
+}
+//Reproducible by inserting Banner component inside section componenets and its required parameters
+export default Hero

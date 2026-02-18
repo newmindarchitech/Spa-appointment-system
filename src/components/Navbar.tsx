@@ -19,9 +19,9 @@ export default function Navbar(){
                         
                     </div>
                     <div className="hidden flex-none lg:block">
-                        <ul className="menu menu-horizontal hidden h-full gap-12 lg:flex">
+                        <ul className="menu menu-horizontal hidden h-full gap-12 lg:flex lg:w-full mx-auto ">
                             {Nav_Links.map((link) => (
-                                <li key={link.key} className="items-center justify-center cursor-pointer transition-all hover:font-bold">
+                                <li key={link.key} className="items-center justify-center cursor-pointer transition-all hover:font-bold xl:gap-12">
                                   <Link href={link.href} passHref>
                                     {link.label}
                                   </Link>

@@ -10,8 +10,28 @@
    transition: 0.5s ease-in-out;
 }
 
+@keyframes fade-out{
+   0%{
+    opacity: 0;
+    transform: translateX(-30px) scale(0.9);
+   }
+   100%{
+    opacity: 1;
+    transform: translateY(0px) scale(1);
+   }
+}
 .carousel_card_active{
     opacity: 1;
     transform: scale(1);
     pointer-events: visible;
 }
+
+.banner_spin{
+   animation: fade-out 300ms linear forwards;
+   animation-timeline: view() ;
+   animation-range:entry ;
+   padding-right: 1em;
+   padding: 1em;
+   align-content: center;
+}
+

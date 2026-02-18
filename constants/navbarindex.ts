@@ -1,7 +1,7 @@
 export const Nav_Links=[
     {href:'/',key:'home',label:'Home'},
-    {href:'/services',key:'services',label:'Services'},
-    {href:'/pricing',key:'price',label:'Pricing'},
+    {href:'/subcription',key:'subscription',label:'Subscription'},
+    {href:'/appointments',key:'appointment',label:'Appointment'},
     {href:'/contact',key:'contact',label:'Contact Us'},
 ]
 
@@ -24,3 +24,19 @@ export const Nav_Links=[
       imgSrc: "/images/dsc_3371-3.jpg",
     },
   ];
+
+export const banners=[
+  {
+    id:"banner1",
+    imgSrc:"/images/banners/6497606.jpg"
+  },{
+    id:"banner2",
+    imgSrc:"/images/banners/6499232.jpg"
+  },{
+    id:"banner3",
+    imgSrc:"/images/banners/6509719.jpg"
+  },{
+    id:"banner4",
+    imgSrc:"/images/banners/7685089.jpg"
+  }
+]
