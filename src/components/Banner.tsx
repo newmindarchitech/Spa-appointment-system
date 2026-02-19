@@ -1,4 +1,11 @@
-const Banner=({image,content,percent_drop})=>{
+interface BannerParam{
+    image:string,
+    content:string,
+    percent_drop:number
+}
+
+
+const Banner=({image,content,percent_drop}:BannerParam)=>{
     return(
         <div className=" relative w-full h-87.5 flex justify-center items-center">
             <img src={image} alt="" className="absolute h-full top-0 z-10 object-cover"/>

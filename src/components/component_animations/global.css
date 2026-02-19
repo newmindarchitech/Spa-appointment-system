@@ -10,7 +10,7 @@
    transition: 0.5s ease-in-out;
 }
 
-@keyframes fade-out{
+@keyframes fade-in{
    0%{
     opacity: 0;
     transform: translateX(-30px) scale(0.9);
@@ -26,12 +26,33 @@
     pointer-events: visible;
 }
 
-.banner_spin{
-   animation: fade-out 300ms linear forwards;
+.promotions_fade{
+   animation: fade-in 300ms linear forwards;
    animation-timeline: view() ;
    animation-range:entry ;
    padding-right: 1em;
    padding: 1em;
    align-content: center;
 }
+
+.hide-scrollbar::-webkit-scrollbar{
+   display: none;
+}
+
+.hide-scrollbar{
+   -ms-overflow-style: none;
+   scrollbar-width: none;
+}
+
+.board_auto_scroll{
+   animation: spin 20s infinite linear;
+}
+/* The code beneath this comment is responsible for auto scrolling the elements in the imageboard. 
+If you wish to adapt this component to n amount of images in the image board, simply adjust the to value till fitting*/
+@keyframes spin {
+   from {left: 100%;}
+   to {left: -215%;} 
+}
+
+
 

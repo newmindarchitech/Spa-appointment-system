@@ -4,4 +4,6 @@
 }
 @tailwindcss base;
 @tailwindcss components;
-@tailwindcss utilities
+@tailwindcss utilities;
+
+

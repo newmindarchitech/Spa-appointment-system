@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useState } from "react";
 import { slides } from "../../constants/navbarindex";
-import "./carousel_styles/carousel.css"
+import "./component_animations/global.css"
 const Carousel = () => {
   const [current, setCurrent] = useState(0);
 
