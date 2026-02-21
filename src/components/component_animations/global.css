@@ -10,6 +10,13 @@
    transition: 0.5s ease-in-out;
 }
 
+.carousel_card_active{
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: visible;
+}
+
+
 @keyframes fade-in{
    0%{
     opacity: 0;
@@ -20,11 +27,7 @@
     transform: translateY(0px) scale(1);
    }
 }
-.carousel_card_active{
-    opacity: 1;
-    transform: scale(1);
-    pointer-events: visible;
-}
+
 
 .promotions_fade{
    animation: fade-in 300ms linear forwards;
@@ -45,14 +48,39 @@
 }
 
 .board_auto_scroll{
-   animation: spin 20s infinite linear;
+   position: relative;
+   animation: spin 25s infinite linear;
 }
 /* The code beneath this comment is responsible for auto scrolling the elements in the imageboard. 
-If you wish to adapt this component to n amount of images in the image board, simply adjust the to value till fitting*/
-@keyframes spin {
-   from {left: 100%;}
-   to {left: -215%;} 
+If you wish to adapt this component to n amount of images in the image board, simply adjust the value 4 to the amount of banner images you want the animation to handle*/
+@keyframes scroll-left {
+   0% {
+      transform: translateX(0);
+   }
+   100% {
+      transform: translateX(calc(-1 * 4 *(100% + 16px * 2)));
+   }
 }
+
+@keyframes scroll-right {
+   100% {
+      transform: translateX(0);
+   }
+   0% {
+      transform: translateX(calc(-1 * 4 *(100% + 10px * 2)));
+   }
+}
+
+.board_auto_scroll_left { 
+
+   animation: scroll-left 52s linear infinite;
+}
+.board_auto_scroll_right{
+   animation: scroll-right 50s linear infinite;
+}
+
+
+
 
 
 

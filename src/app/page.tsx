@@ -1,15 +1,18 @@
 import Carousel from "@/components/Carousel";
 import Hero from "@/components/Hero";
-import ImageBoard from "@/components/Image_Board";
-import Info from "@/components/Image_Board";
+import ServiceBoard from "@/components/Image_Board";
+import Achievements from "@/components/Achievements";
 import Image from "next/image";
+import Features from "@/components/Feature";
 
 export default function Home() {
   return (
     <>
     <Carousel/>
     <Hero/>
-    <ImageBoard/>
+    <ServiceBoard/>
+    <Achievements/>
+    <Features/>
     </>
   );
 }

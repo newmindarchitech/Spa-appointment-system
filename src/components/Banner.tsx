@@ -13,7 +13,7 @@ const Banner=({image,content,percent_drop}:BannerParam)=>{
                 <div className=" absolute pl-12 flex flex-col items-baseline justify-center h-full">
                     <h4 className=" text-yellow-400 lg:text-[40px] font-extrabold ">{percent_drop}%</h4>
                     <h3 className=" lg:text-[40px] uppercase font-bold pb-4 w-4/5">{content}</h3>
-                    <a href='/services' className="btn btn-soft btn-success ">Book Now</a>
+                    <a href='/services' className="btn btn-soft btn-success rounded-none ">Book Now</a>
                 </div>
             </div>
         </div>

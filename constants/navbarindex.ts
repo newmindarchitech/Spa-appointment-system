@@ -46,27 +46,79 @@ export const service_image_boards=[
     imgSrc:'/images/info/message-therapy.png',
     svg_icon:'/service_svgs/massage-spa-body-treatment-svgrepo-com.svg',
     service_name:'Message Therapy',
-    description:''
+    amount_of_people:50
   },
   {
     id:'service2',
     imgSrc:'/images/info/facials and skincare.png',
     svg_icon:'/service_svgs/spa-svgrepo-com.svg',
     service_name:'Facials and Skin Care',
-    description:''
+    amount_of_people:10
   },
   {
     id:'service3',
     imgSrc:'/images/info/body treatments.png',
     svg_icon:'/service_svgs/relaxing-spa-ornaments-svgrepo-com.svg',
     service_name:'Body Treatments',
-    description:''
+    amount_of_people:30
   },
   {
     id:'service4',
     imgSrc:'/images/info/salon.png',
     svg_icon:'/service_svgs/facial-mask-with-flower-in-spa-svgrepo-com.svg',
     service_name:'Salon',
-    description:''
+    amount_of_people:40
   }
 ]
+
+
+export const FEATURES = [
+  {
+    title: 'Real maps can be offline',
+    icon: '/service_svgs/feature/map.svg',
+    variant: 'green',
+    description:
+      'We provide a solution for you to be able to use our application when climbing, yes offline maps you can use at any time there is no signal at the location',
+  },
+  {
+    title: 'Set an adventure schedule',
+    icon: '/service_svgs/feature/calendar.svg',
+    variant: 'green',
+    description:
+      "Schedule an adventure with friends. On holidays, there are many interesting offers from Hilink. That way, there's no more discussion",
+  },
+  {
+    title: 'Technology using augment reality',
+    icon: '/service_svgs/feature/calendar.svg',
+    variant: 'green',
+    description:
+      'Technology uses augmented reality as a guide to your hiking trail in the forest to the top of the mountain. Already supported by the latest technology without an internet connection',
+  },
+  {
+    title: 'Many new locations every month',
+    icon: '/service_svgs/feature/location.svg',
+    variant: 'orange',
+    description:
+      'Lots of new locations every month, because we have a worldwide community of climbers who share their best experiences with climbing',
+  },
+];
+
+
+export const FOOTER_LINKS = [
+  {
+    title: 'Learn More',
+    links: [
+      'About Hilink',
+      'Press Releases',
+      'Environment',
+      'Jobs',
+      'Privacy Policy',
+      'Contact Us',
+    ],
+  },
+  {
+    title: 'Our Community',
+    links: ['Climbing xixixi', 'Hiking hilink', 'Hilink kinthill'],
+  },
+];
+
