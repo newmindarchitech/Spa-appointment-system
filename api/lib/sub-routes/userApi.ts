@@ -1,16 +1,21 @@
 import { Hono } from "hono";
 import AccountModel from '../MongoSchemas/user'
 import { zValidator } from "@hono/zod-validator";
-import { LoginAccountSchemaValidate, UserType } from "../formSchema/login";
+import { LoginAccountSchemaValidate, LoginType } from "../formSchema/login";
 import UserModel from "../MongoSchemas/user";
 import {sign} from 'hono/jwt'
 import {setCookie} from 'hono/cookie'
 import { loadEd25519Keys } from "../config/loadkeys";
 import { RegisterAccountSchemaValidate, RegisterType } from "../formSchema/register";
 import AppointmentRecModel from "../MongoSchemas/appointmentRec";
+import { cors } from 'hono/cors'
 
 const secret= Bun.env.SECRET as string
 export const AccountRoutes=new Hono()
+.use('/*', cors({
+    origin:'http://localhost:3000',
+    credentials:true
+}))
 .post('/register',zValidator('form',RegisterAccountSchemaValidate),async(c)=>{
     const userSchemaDataPrep=c.req.valid('form')
     const debug:RegisterType=userSchemaDataPrep
@@ -42,7 +47,7 @@ export const AccountRoutes=new Hono()
 })
 .post('/login',zValidator('form',LoginAccountSchemaValidate),async(c)=>{
     const information=c.req.valid('form')
-    const debug:UserType=information
+    const debug:LoginType=information
     console.log(debug)
     try{
         
@@ -68,7 +73,7 @@ export const AccountRoutes=new Hono()
             sameSite:'Strict',
             secure:Bun.env.NODE_ENV=='production'
         })
-        return c.redirect('http://localhost:3000',302)        
+        return c.text(jwt_token,200)
     }catch(error){
        console.log(error)
     }

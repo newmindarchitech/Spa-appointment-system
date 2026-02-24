@@ -1,7 +1,7 @@
 export const Nav_Links=[
     {href:'/',key:'home',label:'Home'},
     {href:'/subcription',key:'subscription',label:'Subscription'},
-    {href:'/appointments',key:'appointment',label:'Appointment'},
+    {href:'/appointments',key:'appointment',label:'Appointments'},
     {href:'/contact',key:'contact',label:'Contact Us'},
 ]
 
@@ -42,28 +42,28 @@ export const promotion_banners=[
 ]
 
 export const service_image_boards=[
-  { id:'service1',
+  { 
     imgSrc:'/images/info/message-therapy.png',
     svg_icon:'/service_svgs/massage-spa-body-treatment-svgrepo-com.svg',
     service_name:'Message Therapy',
     amount_of_people:50
   },
   {
-    id:'service2',
+    
     imgSrc:'/images/info/facials and skincare.png',
     svg_icon:'/service_svgs/spa-svgrepo-com.svg',
     service_name:'Facials and Skin Care',
     amount_of_people:10
   },
   {
-    id:'service3',
+    
     imgSrc:'/images/info/body treatments.png',
     svg_icon:'/service_svgs/relaxing-spa-ornaments-svgrepo-com.svg',
     service_name:'Body Treatments',
     amount_of_people:30
   },
   {
-    id:'service4',
+    
     imgSrc:'/images/info/salon.png',
     svg_icon:'/service_svgs/facial-mask-with-flower-in-spa-svgrepo-com.svg',
     service_name:'Salon',

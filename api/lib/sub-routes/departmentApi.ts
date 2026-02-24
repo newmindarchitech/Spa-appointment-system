@@ -3,9 +3,14 @@ import { Hono } from "hono";
 import { DepartmentSchemaValidate } from "../formSchema/department";
 import DepartmentModel from "../MongoSchemas/department";
 import AppointmentModel from "../MongoSchemas/appointment";
+import { cors } from "hono/cors";
 
 
 export const DepartmentRoute=new Hono()
+.use('/*', cors({
+    origin:'http://localhost:3000',
+    credentials:true
+}))
 .post('/create',zValidator('form',DepartmentSchemaValidate),async(c)=>{
     const form_info=c.req.valid('form')
     const DepartmentDoc=new DepartmentModel({

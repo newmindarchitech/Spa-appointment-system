@@ -5,9 +5,14 @@ import EmployeeModel from "../MongoSchemas/employee";
 import { loadEd25519Keys } from "../config/loadkeys";
 import { sign } from "hono/jwt";
 import { setCookie } from "hono/cookie";
+import { cors } from "hono/cors";
 
 
 export const EmployeeRoute=new Hono()
+.use('/*', cors({
+    origin:'http://localhost:3000',
+    credentials:true
+}))
 .post('/create',zValidator('form',ApplicantRequestSchemaValidate),async(c)=>{
     const employee_info=c.req.valid('form')
     const hashedpassword= await Bun.password.hash(employee_info.password)

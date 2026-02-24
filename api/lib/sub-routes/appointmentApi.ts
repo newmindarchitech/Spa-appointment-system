@@ -5,7 +5,12 @@ import AppointmentModel from "../MongoSchemas/appointment";
 import { getCookie } from "hono/cookie";
 import { verify } from "hono/jwt";
 import UserModel from "../MongoSchemas/user";
+import { cors } from "hono/cors";
 export const AppointmentRoutes=new Hono()
+.use('/*', cors({
+    origin:'http://localhost:3000',
+    credentials:true
+}))
 .get("/get",async (c)=>{
     const appointments= await AppointmentModel.find()
     return c.json(

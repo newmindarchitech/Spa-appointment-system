@@ -4,15 +4,35 @@ import { AppointmentChec, DepartmentRoute, EmployeeRoute, UserProtection, type A
 
 const appointment= hc<AppointmentRoute>('http://localhost:2000')
 
-const user= hc<UserRoute>('http://localhost:2000')
+const user= hc<UserRoute>('http://localhost:2000',{
+    init:{
+        credentials:'include'
+    }
+})
 
-const employee= hc<EmployeeRoute>('http://localhost:2000')
+const employee= hc<EmployeeRoute>('http://localhost:2000',{
+    init:{
+        credentials:'include'
+    }
+})
 
-const department=hc<DepartmentRoute>('http://localhost:2000')
+const department=hc<DepartmentRoute>('http://localhost:2000',{
+    init:{
+        credentials:'include'
+    }
+})
 
-const UserCheck=hc<UserProtection>('http://localhost:2000')
+const UserCheck=hc<UserProtection>('http://localhost:2000',{
+    init:{
+        credentials:'include'
+    }
+})
 
-const AppointmentCheck=hc<AppointmentChec>('http://localhost:2000')
+const AppointmentCheck=hc<AppointmentChec>('http://localhost:2000',{
+    init:{
+        credentials:'include'
+    }
+})
 
 export const AuthRoutes=user.api
 

@@ -23,8 +23,8 @@ const ServiceBoard=()=>{
             <section className=" 2xl:mx-auto 2xl:max-w-360 relative flex flex-col py-10 lg:mb-10 lg:py-20 xl:mb-20">
                 <div className="hide-scrollbar flex h-85 w-full items-start justify-start gap-8 overflow-hidden lg:h-100 xl:h-160">
                     {slides.map((board)=>(
-                        <div className="relative h-full flex flex-col w-full min-w-275 bg-cover bg-no-repeat board_auto_scroll_left">
-                            <img key={board.id}
+                        <div key={board.id} className="relative h-full flex flex-col w-full min-w-275 bg-cover bg-no-repeat board_auto_scroll_left">
+                            <img 
                                 src={board.imgSrc}
                                 alt="background"
                                 className="lg:rounded-4xl 2xl:rounded-2xl sm:rounded-sm"
@@ -32,7 +32,7 @@ const ServiceBoard=()=>{
                             <div  className="absolute inset-0 flex h-full flex-col items-start justify-start p-6 lg:px-9 lg:py-10">  
                                 <div className="flex items-center gap-4">
                                     <div className="rounded-full bg-green-500 p-4">
-                                        <Image   src={board.svg_icon as string}  alt="logo" width={28} height={28} />
+                                        <Image src={board.svg_icon as string}  alt="logo" width={28} height={28} />
                                     </div>
                                     <div className="flex flex-col gap-1">
                                         <h4 className="text-[18px] font-bold text-white">{board.service_name}</h4>
