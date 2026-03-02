@@ -4,8 +4,8 @@ import { NextResponse, type NextRequest } from "next/server"
 
 
 const protectedUserRoutes=['/profile','/appointments']
-const protectedEmployeeRoutes=['/auth/employee/login','/auth/employee/register','/departments']
-
+const protectedAdminRoutes=['/admin','admin/employee','admin/departments']
+const protecedEmpRoutes=['/dashboard','dashboard/services']
 export  async function proxy(request:NextRequest){
     if(protectedUserRoutes.includes(request.nextUrl.pathname)){
         const user_cookie= (await cookies()).get('Signed_Cookie');
@@ -19,16 +19,25 @@ export  async function proxy(request:NextRequest){
         return NextResponse.next()
     }
 
-    if(protectedEmployeeRoutes.includes(request.nextUrl.pathname)){
-        const user_cookie= (await cookies()).get('Signed_Cookie');
+    if(protectedAdminRoutes.includes(request.nextUrl.pathname)){
+        const admin_cookie= (await cookies()).get('Admin_Cookie');
+        if(admin_cookie){
+            return NextResponse.next()
+        }else if(!admin_cookie){
+            return NextResponse.redirect(new URL("/auth/user/login",request.url))
+        }
+    }
+
+    if(protecedEmpRoutes.includes(request.nextUrl.pathname)){
+        const admin_cookie= (await cookies()).get('Admin_Cookie');
         const employee_cookie= (await cookies()).get('Employee_Cookie');
-        if(user_cookie){
-            return NextResponse.redirect(new URL("/",request.url))
-        }else if(!user_cookie){
-             return NextResponse.redirect(new URL("/auth/user/login",request.url))
+        if(admin_cookie){
+            return NextResponse.next()
+        }else if(!admin_cookie){
+            return NextResponse.redirect(new URL("/auth/user/login",request.url))
         }
         if(!employee_cookie){
-            return NextResponse.redirect(new URL("/auth/employee/login",request.url))
+            return NextResponse.redirect(new URL("/employee",request.url))
         }else{
             return NextResponse.next()
         }
@@ -38,6 +47,6 @@ export  async function proxy(request:NextRequest){
 
 
 export const config={
-    matcher:["/((?!api|_next/static|_next/image|favicon.ico|auth/user/login|assets).*)"]
+    matcher:["/((?!api|_next/static|_next/image|favicon.ico|auth/user/login|auth/user/register|assets).*)"]
 }
 

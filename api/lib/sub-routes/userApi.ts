@@ -50,7 +50,6 @@ export const AccountRoutes=new Hono()
     const debug:LoginType=information
     console.log(debug)
     try{
-        
         const user= await UserModel.findOne({clientemail:information.email })
         if(!user){
             return c.json({ message: 'User not found' }, 404);
@@ -60,20 +59,45 @@ export const AccountRoutes=new Hono()
             return c.json("Invalid Credentials",401)
         }
         const now=Math.floor(Date.now()/1000)
-        const jwt_payload={
+        if(information.email===Admin.Admin_email){
+           const jwt_payload={
             sub:user.ID,
             name:user.clientemail,
             iat:now,
-            exp:now + 7 * 24 * 60 * 60
+            exp:now + 7 * 24 * 60 * 60,
+            role: "admin"
+           }
+        
+
+            const edDSA_Private= await loadEd25519Keys()
+            const jwt_token= await sign(jwt_payload,edDSA_Private.privatePEM,'EdDSA')
+            setCookie(c,"Admin_Cookie",jwt_token,{
+                maxAge:24 * 60 * 60,
+                sameSite:'Strict',
+                secure:Bun.env.NODE_ENV=='production'
+            })
+            return c.text(jwt_token,200)
         }
-        const edDSA_Private= await loadEd25519Keys()
-        const jwt_token= await sign(jwt_payload,edDSA_Private.privatePEM,'EdDSA')
-        setCookie(c,"Signed_Cookie",jwt_token,{
-            maxAge:24 * 60 * 60,
-            sameSite:'Strict',
-            secure:Bun.env.NODE_ENV=='production'
-        })
-        return c.text(jwt_token,200)
+        else{
+           const jwt_payload={
+            sub:user.ID,
+            name:user.clientemail,
+            iat:now,
+            exp:now + 7 * 24 * 60 * 60,
+            role: "user"
+           }
+        
+
+            const edDSA_Private= await loadEd25519Keys()
+            const jwt_token= await sign(jwt_payload,edDSA_Private.privatePEM,'EdDSA')
+            setCookie(c,"Signed_Cookie",jwt_token,{
+                maxAge:24 * 60 * 60,
+                sameSite:'Strict',
+                secure:Bun.env.NODE_ENV=='production'
+            })
+            return c.text(jwt_token,200)
+        }
+        
     }catch(error){
        console.log(error)
     }

@@ -28,8 +28,8 @@ export const AppointmentRoutes=new Hono()
         clientcontactNumber:appointmentDataPrep.contactnumber,
         email:appointmentDataPrep.email,
         appointmentContext:appointmentDataPrep.appointmentcontext,
-        appointmentDate:new Date(),
-        status:appointmentDataPrep.status,
+        appointmentDate:appointmentDataPrep.date,
+        status:"pending",
         createdDate: new Date(),
         AppointmentRec:user_db?.AppointmentRecID,
         CustomerID:user_db?.ID

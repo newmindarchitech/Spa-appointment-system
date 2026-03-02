@@ -18,7 +18,7 @@ index.http
 # next.js
 /.next/
 /out/
-/api/lib/PersonalInfo.ts
+/api/utils/
 # production
 /build
 

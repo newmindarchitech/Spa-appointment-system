@@ -4,20 +4,24 @@ import { useForm,SubmitHandler } from "react-hook-form";
 import { LoginAccountSchemaValidate, LoginType } from "../../../../../api/lib/formSchema/login";
 import { useEffect, useState } from "react";
 import { AuthRoutes } from "../../../../../api/api";
+import { usePathname } from "next/navigation";
 const LoginPage=()=>{
     const [success, setSuccess] = useState(false);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
-
+    const pathname = usePathname();
     useEffect(() => {
         if (success || errorMessage) {
             const timer = setTimeout(() => {
                 setSuccess(false);
                 setErrorMessage(null);
             }, 3000);
+            if(isSubmitSuccessful) {
+             reset(undefined, {keepValues: true, keepDirty: false, keepDefaultValues: false});
+            }
             return () => clearTimeout(timer);
         }
     }, [success, errorMessage]);
-    const {register,handleSubmit,formState:{errors,isSubmitting},reset}=useForm<LoginType>({
+    const {register,handleSubmit,formState:{errors,isSubmitting,isSubmitSuccessful},reset}=useForm<LoginType>({
         resolver:zodResolver(LoginAccountSchemaValidate),
         mode:'onSubmit',
         shouldFocusError:true
@@ -55,11 +59,30 @@ const LoginPage=()=>{
             <h1 className=" text-xl font-black text-black -tracking-[0.5px]">Sign In</h1>
             <form className="rounded-3xl shadow-md gap-6 w-full flex flex-col px-6 py-7.5 " onSubmit={handleSubmit(onSubmit)} >
                     <div className=" justify-center flex">
-                        <div role="tablist" className=" tabs tabs-box tabs-lift">
-                            <label className=" tab">
-                                <a role="tab" href="/auth/user/login">Login</a>
-                            </label>
-                            <a role="tab" className=" tab" href="/auth/user/register">Register</a>
+                        <div className="tabs tabs-boxed bg-base-200/60 backdrop-blur-md p-1 rounded-2xl shadow-md">
+    
+                            <a
+                                href="/auth/user/login"
+                                className={`tab font-medium transition-all duration-300 ${
+                                    pathname === "/auth/user/login"
+                                    ? "tab-active bg-neutral text-white rounded-xl"
+                                    : "hover:bg-base-300 rounded-xl"
+                                }`}
+                            >
+                                Login
+                            </a>
+
+                            <a
+                                href="/auth/user/register"
+                                className={`tab font-medium transition-all duration-300 ${
+                                    pathname === "/auth/user/register"
+                                    ? "tab-active bg-neutral text-white rounded-xl"
+                                    : "hover:bg-base-300 rounded-xl"
+                                }`}
+                            >
+                             Register
+                            </a>
+
                         </div>
                     </div>
                  <fieldset className=" fieldset floating-label">
